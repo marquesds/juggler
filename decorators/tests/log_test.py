@@ -11,7 +11,7 @@ def func():
 
 class TestLog(TestCase):
     @log_capture()
-    def test_logging(self, l):
+    def test_logger(self, l):
         func()
 
         l.check(
