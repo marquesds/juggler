@@ -1,20 +1,27 @@
 import abc
+import uuid
+import logging
+from decorators import log
 
 
 class Service():
     __metaclass__ = abc.ABCMeta
 
-    def __generate_id__(self):
-        pass
+    def __init__(self, table):
+        self.table = table
+
+    @log.logger(logging.DEBUG, "Generating uuid", "generate_uuid")
+    def __generate_uuid__(self):
+        return str(uuid.uuid4())
 
     @abc.abstractmethod
-    def get_all_tables(self):
+    def __create_id_column__(self):
         """
         :return:
         """
 
     @abc.abstractmethod
-    def get_all_data(self):
+    def list(self):
         """
         :return:
         """

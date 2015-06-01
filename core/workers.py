@@ -4,11 +4,6 @@ import abc
 class Worker():
     __metaclass__ = abc.ABCMeta
 
-    def create_worker(self):
-        """
-        :return:
-        """
-
     @abc.abstractmethod
     def syncronize(self):
         """
