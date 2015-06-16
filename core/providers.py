@@ -43,10 +43,13 @@ class CassandraProvider(Provider):
             self.cassandra = self.cluster.connect(self.database)
         except NoHostAvailable as ex:
             print(ex)
+            self.close()
 
     def close(self):
-        self.cluster.shutdown()
-        self.cassandra.shutdown()
+        if hasattr(self, 'cluster'):
+            self.cluster.shutdown()
+        if hasattr(self, 'cassandra'):
+            self.cassandra.shutdown()
 
     def show_tables(self):
         return list(self.cluster.metadata.keyspaces[self.database].tables.keys())
